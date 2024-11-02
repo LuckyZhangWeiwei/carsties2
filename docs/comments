@@ -2,7 +2,11 @@ dotnet --info
 dotnet new list
 dotnet new sln
 dotnet new webapi -o src/AuctionService --use-controllers
+dotnet new webapi -o src/SearchService --use-controllers
+
 dotnet sln add src/AuctionService/AuctionService.csproj
+dotnet sln add src/SearchService/SearchService.csproj
+
 dotnet watch
 dotnet tool list -g
 ---------------------------------------------------------------
