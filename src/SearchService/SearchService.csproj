@@ -13,8 +13,4 @@
     <PackageReference Include="MongoDB.Entities" Version="23.1.0" />
     <PackageReference Include="Polly" Version="8.4.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
 </Project>
