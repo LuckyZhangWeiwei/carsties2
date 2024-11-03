@@ -3,12 +3,15 @@ dotnet new list
 dotnet new sln
 dotnet new webapi -o src/AuctionService --use-controllers
 dotnet new webapi -o src/SearchService --use-controllers
-
+dotnet new classlib -n Contracts --framework net8.0
 dotnet sln add src/AuctionService/AuctionService.csproj
 dotnet sln add src/SearchService/SearchService.csproj
 
 dotnet watch
 dotnet tool list -g
+dotnet add src/AuctionService/AuctionService.csproj reference src/Contracts/Contracts.csproj
+
+
 ---------------------------------------------------------------
 dotnet ef migrations add "InitialCreate" -o Data/Migrations
 dotnet ef database update
