@@ -10,7 +10,7 @@ dotnet sln add src/SearchService/SearchService.csproj
 dotnet watch
 dotnet tool list -g
 dotnet add src/AuctionService/AuctionService.csproj reference src/Contracts/Contracts.csproj
-
+dotnet add src/SearchService/SearchService.csproj reference src/Contracts/Contracts.csproj
 
 ---------------------------------------------------------------
 dotnet ef migrations add "InitialCreate" -o Data/Migrations
