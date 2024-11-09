@@ -21,4 +21,9 @@ dotnet ef migrations add AddOutboxState
 dotnet ef database update
 
 ----------------------------------------------------------------
+dotnet new -i Duende.IdentityServer.Templates
+dotnet new isaspid -o src/IdentityService
+dotnet sln add src/IdentityService/IdentityService.csproj
+
+----------------------------------------------------------------
 docker compose up -d
