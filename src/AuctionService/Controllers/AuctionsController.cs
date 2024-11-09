@@ -2,6 +2,8 @@ using AuctionService.Data;
 using AuctionService.DTOs;
 using AuctionService.Entities;
 using AutoMapper;
+using Contracts;
+using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +11,7 @@ namespace AuctionService.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuctionsController(IAuctionRepository repo, IMapper mapper)
+public class AuctionsController(IAuctionRepository repo, IMapper mapper, IPublishEndpoint publishEndpoint)
     : ControllerBase
 {
     [HttpGet]
@@ -28,19 +30,19 @@ public class AuctionsController(IAuctionRepository repo, IMapper mapper)
         return auction;
     }
 
-    [Authorize]
+    // [Authorize]
     [HttpPost]
     public async Task<ActionResult<AuctionDto>> CreateAuction(CreateAuctionDto createAuctionDto)
     {
         var auction = mapper.Map<Auction>(createAuctionDto);
 
-        auction.Seller = User.Identity?.Name ?? "Unknown user";
+        auction.Seller = "test";  //User.Identity?.Name ?? "Unknown user";
 
         repo.AddAuction(auction);
 
         var newAuction = mapper.Map<AuctionDto>(auction);
 
-        // await publishEndpoint.Publish(mapper.Map<AuctionCreated>(newAuction));
+        await publishEndpoint.Publish(mapper.Map<AuctionCreated>(newAuction));
 
         var result = await repo.SaveChangesAsync();
 
@@ -50,7 +52,7 @@ public class AuctionsController(IAuctionRepository repo, IMapper mapper)
             new { Id = auction.Id }, newAuction);
     }
 
-    [Authorize]
+    // [Authorize]
     [HttpPut("{id:guid}")]
     public async Task<ActionResult> UpdateAuction(Guid id, UpdateAuctionDto updateAuctionDto)
     {
@@ -66,7 +68,7 @@ public class AuctionsController(IAuctionRepository repo, IMapper mapper)
         auction.Item.Mileage = updateAuctionDto.Mileage ?? auction.Item.Mileage;
         auction.Item.Year = updateAuctionDto.Year ?? auction.Item.Year;
 
-        // await publishEndpoint.Publish(mapper.Map<AuctionUpdated>(auction));
+        await publishEndpoint.Publish(mapper.Map<AuctionUpdated>(auction));
 
         var result = await repo.SaveChangesAsync();
 
@@ -75,7 +77,7 @@ public class AuctionsController(IAuctionRepository repo, IMapper mapper)
         return BadRequest("Problem saving changes");
     }
 
-    [Authorize]
+    // [Authorize]
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteAuction(Guid id)
     {
@@ -87,7 +89,7 @@ public class AuctionsController(IAuctionRepository repo, IMapper mapper)
 
         repo.RemoveAuction(auction);
 
-        // await publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
+        await publishEndpoint.Publish<AuctionDeleted>(new { Id = auction.Id.ToString() });
 
         var result = await repo.SaveChangesAsync();
 
