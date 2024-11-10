@@ -30,7 +30,7 @@ public class AuctionsController(IAuctionRepository repo, IMapper mapper, IPublis
         return auction;
     }
 
-    // [Authorize]
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<AuctionDto>> CreateAuction(CreateAuctionDto createAuctionDto)
     {
@@ -52,7 +52,7 @@ public class AuctionsController(IAuctionRepository repo, IMapper mapper, IPublis
             new { Id = auction.Id }, newAuction);
     }
 
-    // [Authorize]
+    [Authorize]
     [HttpPut("{id:guid}")]
     public async Task<ActionResult> UpdateAuction(Guid id, UpdateAuctionDto updateAuctionDto)
     {
@@ -77,7 +77,7 @@ public class AuctionsController(IAuctionRepository repo, IMapper mapper, IPublis
         return BadRequest("Problem saving changes");
     }
 
-    // [Authorize]
+    [Authorize]
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteAuction(Guid id)
     {
