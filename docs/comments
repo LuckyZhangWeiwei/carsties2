@@ -20,6 +20,9 @@ dotnet ef database drop
 dotnet ef migrations add AddOutboxState
 dotnet ef database update
 
+dotnet ef migrations add "InitialCreate" -o Data/Migrations
+dotnet ef database update
+dotnet tool update dotnet-ef -g
 ----------------------------------------------------------------
 dotnet new -i Duende.IdentityServer.Templates
 dotnet new isaspid -o src/IdentityService
