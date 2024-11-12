@@ -29,4 +29,7 @@ dotnet new isaspid -o src/IdentityService
 dotnet sln add src/IdentityService/IdentityService.csproj
 
 ----------------------------------------------------------------
+dotnet new web -o src/GatewayService
+dotnet sln add src/GatewayService/GatewayService.csproj
+----------------------------------------------------------------
 docker compose up -d
