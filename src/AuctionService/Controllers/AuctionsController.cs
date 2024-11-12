@@ -36,7 +36,7 @@ public class AuctionsController(IAuctionRepository repo, IMapper mapper, IPublis
     {
         var auction = mapper.Map<Auction>(createAuctionDto);
 
-        auction.Seller = "test";  //User.Identity?.Name ?? "Unknown user";
+        auction.Seller = User.Identity?.Name ?? "Unknown user";
 
         repo.AddAuction(auction);
 
