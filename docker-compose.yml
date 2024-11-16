@@ -67,16 +67,16 @@ services:
     image: zhangweiwei1982/identity-svc:latest
     build:
       context: .
-      dockerfile: src/IdentityService/Dockerfile
+      dockerfile: src/IdentityService/dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - IssuerUri=https://id.carsties.local
       - ClientApp=https://app.carsties.local
       - ConnectionStrings__DefaultConnection=Server=postgres; User Id=postgres; Password=postgrespw; Database=identity
       - VIRTUAL_HOST=id.carsties.local
-    # ports:
-    #   - 5001:80
+    ports:
+      - 5001:80
     depends_on:
       - postgres
 
