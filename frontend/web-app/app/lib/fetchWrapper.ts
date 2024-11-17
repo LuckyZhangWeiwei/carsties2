@@ -8,7 +8,7 @@ async function get(url: string) {
     headers: await getHeaders(),
   };
 
-  const response = await fetch(baseUrl + url, requestOptions);
+  const response = await fetch(baseUrl + "/" + url, requestOptions);
 
   return handleResponse(response);
 }

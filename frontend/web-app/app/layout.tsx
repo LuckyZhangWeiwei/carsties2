@@ -24,9 +24,10 @@ export default async function RootLayout({
         <ToasterProvider />
         <Navbar />
         <main className="container mx-auto px-5 pt-10">
-          <SignalRProvider user={user} notifyUrl={notifyUrl!}>
+          {/* <SignalRProvider user={user!} notifyUrl={notifyUrl!}>
             {children}
-          </SignalRProvider>
+          </SignalRProvider> */}
+          {children}
         </main>
       </body>
     </html>

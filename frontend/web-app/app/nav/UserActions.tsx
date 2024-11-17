@@ -2,7 +2,6 @@
 
 import { useParamsStore } from "@/hooks/useParamsStore";
 import {
-  Button,
   Dropdown,
   DropdownDivider,
   DropdownItem,
