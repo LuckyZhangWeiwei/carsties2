@@ -5,6 +5,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: "jwt",
   },
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     DuendeIDS6Provider({
       id: "id-server",
@@ -42,6 +43,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async session({ session, token }) {
       if (token) {
         session.user = { ...session.user, name: token.username as string };
+        session.accessToken = token.accessToken;
+        session.token = token;
       }
       return session;
     },
