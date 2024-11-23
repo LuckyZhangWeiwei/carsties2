@@ -43,6 +43,12 @@ docker compose build search-svc
 ----------------------------------------------------------------
 docker build -t zhangweiwei1982/auction-svc:latest -f src/AuctionService/dockerfile .
 docker push zhangweiwei1982/auction-svc:latest
+
+docker build -t zhangweiwei1982/gateway-svc:latest -f src/GatewayService/dockerfile .
+docker push zhangweiwei1982/gateway-svc:latest
+
+docker build -t zhangweiwei1982/bid-svc:latest -f src/BiddingService/dockerfile .
+docker push zhangweiwei1982/bid-svc:latest
 ----------------------------------------------------------------
 net stop winnat
 net start winnat
