@@ -6,7 +6,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": false,
       "launchUrl": "weatherforecast",
-      "applicationUrl": "http://localhost:7001",
+      // "applicationUrl": "http://localhost:7001", /*因为在appsettings 的Kestrel 节点配置了，所以这不用配置*/
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
