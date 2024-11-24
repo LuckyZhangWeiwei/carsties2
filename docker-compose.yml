@@ -41,9 +41,9 @@ services:
       - Kestrel__Endpoints__Grpc__Url=http://+:7777
       - Kestrel__Endpoints__WebApi__Protocols=Http1
       - Kestrel__Endpoints__WebApi__Url=http://+:80
-    ports:
-      - 7001:80
-      - 7777:7777
+    # ports:
+    #   - 7001:80
+    #   - 7777:7777
     depends_on:
       - postgres
       - rabbitmq
@@ -58,8 +58,8 @@ services:
       - RabbitMQ__Host=rabbitmq
       - ConnectionStrings__MongoDbConnection=mongodb://root:mongopw@mongodb
       - AuctionServiceUrl=http://auction-svc
-    ports:
-      - 7002:80
+    # ports:
+    #   - 7002:80
     depends_on:
       - mongodb
       - rabbitmq
@@ -105,10 +105,24 @@ services:
       - ConnectionStrings__BidDbConnection=mongodb://root:mongopw@mongodb
       - IdentityServiceUrl=http://identity-svc
       - GrpcAuction=http://auction-svc:7777
-    ports:
-      - 7003:80
+    # ports:
+    #   - 7003:80
     depends_on:
       - mongodb
+      - rabbitmq
+
+  notify-svc:
+    image: zhangweiwei1982/notify-svc:latest
+    build: 
+      context: .
+      dockerfile: src/NotificationService/dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - RabbitMq__Host=rabbitmq
+    # ports:
+    #   - 7004:80
+    depends_on:
       - rabbitmq
 
 volumes:

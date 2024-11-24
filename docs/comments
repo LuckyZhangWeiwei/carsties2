@@ -10,6 +10,10 @@ dotnet sln add src/AuctionService/AuctionService.csproj
 dotnet sln add src/SearchService/SearchService.csproj
 dotnet sln add src/BiddingService/BiddingService.csproj
 
+dotnet new web -o src/NotificationService
+dotnet sln add src/NotificationService/NotificationService.csproj
+dotnet add src/NotificationService/NotificationService.csproj reference src/Contracts/Contracts.csproj
+
 dotnet watch
 dotnet tool list -g
 dotnet add src/AuctionService/AuctionService.csproj reference src/Contracts/Contracts.csproj
@@ -44,11 +48,19 @@ docker compose build search-svc
 docker build -t zhangweiwei1982/auction-svc:latest -f src/AuctionService/dockerfile .
 docker push zhangweiwei1982/auction-svc:latest
 
-docker build -t zhangweiwei1982/gateway-svc:latest -f src/GatewayService/dockerfile .
-docker push zhangweiwei1982/gateway-svc:latest
+docker build -t zhangweiwei1982/search-svc:latest -f src/SearchService/dockerfile .
+docker push zhangweiwei1982/search-svc:latest
 
 docker build -t zhangweiwei1982/bid-svc:latest -f src/BiddingService/dockerfile .
 docker push zhangweiwei1982/bid-svc:latest
+
+docker build -t zhangweiwei1982/notify-svc:latest -f src/NotificationService/dockerfile .
+docker push zhangweiwei1982/notify-svc:latest
+
+docker build -t zhangweiwei1982/gateway-svc:latest -f src/GatewayService/dockerfile .
+docker push zhangweiwei1982/gateway-svc:latest
+
+
 ----------------------------------------------------------------
 net stop winnat
 net start winnat
