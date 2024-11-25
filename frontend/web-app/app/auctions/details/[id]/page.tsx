@@ -14,7 +14,8 @@ import BidItem from "./BidItem";
 import BidList from "./BidList";
 
 export default async function Details({ params }: { params: { id: string } }) {
-  const data = await getDetailedViewData(params.id);
+  const { id } = await params;
+  const data = await getDetailedViewData(id);
   const user = await getCurrentUser();
 
   return (

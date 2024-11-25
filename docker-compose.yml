@@ -88,7 +88,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
-      - ClientApp=https://app.carsties.local
+      # - ClientApp=https://app.carsties.local
+      - ClientApp=http://localhost:3000
       - VIRTUAL_HOST=api.carsties.local
     ports:
       - 6001:80

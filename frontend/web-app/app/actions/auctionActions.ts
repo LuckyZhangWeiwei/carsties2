@@ -16,13 +16,13 @@ export async function updateAuctionTest() {
   };
 
   return await fetchWrapper.put(
-    "/auctions/4936249e-21c2-431a-bc3b-2782784c8c55",
+    "auctions/4936249e-21c2-431a-bc3b-2782784c8c55",
     data
   );
 }
 
 export async function createAuction(data: FieldValues) {
-  return await fetchWrapper.post("/auctions", data);
+  return await fetchWrapper.post("auctions", data);
 }
 
 export async function getDetailedViewData(id: string): Promise<Auction> {
@@ -31,7 +31,7 @@ export async function getDetailedViewData(id: string): Promise<Auction> {
 
 export async function updateAuction(data: FieldValues, id: string) {
   const res = await fetchWrapper.put(`auctions/${id}`, data);
-  revalidatePath(`/auctions/${id}`);
+  revalidatePath(`auctions/${id}`);
   return res;
 }
 
