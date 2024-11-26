@@ -78,7 +78,10 @@ export default function SignalRProvider({ children, user, notifyUrl }: Props) {
 
       connection.current
         .start()
-        .then(() => "Connected to notification hub")
+        .then(() => {
+          console.log("Connected to notification hub");
+          return "Connected to notification hub";
+        })
         .catch((err) => console.log(err));
     }
 
