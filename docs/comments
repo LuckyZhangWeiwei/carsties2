@@ -60,6 +60,9 @@ docker push zhangweiwei1982/notify-svc:latest
 docker build -t zhangweiwei1982/gateway-svc:latest -f src/GatewayService/dockerfile .
 docker push zhangweiwei1982/gateway-svc:latest
 
+docker build -t zhangweiwei1982/web-app:latest -f frontend/web-app/dockerfile .
+docker push zhangweiwei1982/web-app:latest
+
 
 ----------------------------------------------------------------
 net stop winnat
