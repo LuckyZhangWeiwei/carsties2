@@ -6,7 +6,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - /var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   mongodb:
     image: mongo:latest
@@ -16,7 +16,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - /data/db
+      - mongo_data:/data/db
   rabbitmq:
     image: rabbitmq:3.12.2-management-alpine
     container_name: rabbitmq
@@ -134,3 +134,7 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./devcerts:/etc/nginx/certs
+
+volumes:
+  postgres_data:
+  mongo_data:
