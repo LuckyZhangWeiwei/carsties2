@@ -30,7 +30,6 @@ services:
       context: .
       dockerfile: src/AuctionService/dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - ASPNETCORE_URLS=http://+:7777
       - RabbitMQ__Host=rabbitmq
@@ -50,7 +49,6 @@ services:
       context: .
       dockerfile: src/SearchService/dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - RabbitMQ__Host=rabbitmq
       - ConnectionStrings__MongoDbConnection=mongodb://root:mongopw@mongodb
@@ -65,7 +63,6 @@ services:
       context: .
       dockerfile: src/IdentityService/dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
       - IssuerUri=https://id.carsties.com
       - ClientApp=https://app.carsties.com
@@ -91,7 +88,6 @@ services:
       context: .
       dockerfile: src/BiddingService/dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - RabbitMq__Host=rabbitmq
       - ConnectionStrings__BidDbConnection=mongodb://root:mongopw@mongodb
@@ -106,7 +102,6 @@ services:
       context: .
       dockerfile: src/NotificationService/dockerfile
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
       - RabbitMq__Host=rabbitmq
     depends_on:
