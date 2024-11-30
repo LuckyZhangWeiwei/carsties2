@@ -8,9 +8,9 @@ import { User } from "next-auth";
 import { useParams } from "next/navigation";
 import React, { ReactNode, useCallback, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
-import AuctionCreatedToast from "../conponents/AuctionCreatedToast";
+import AuctionCreatedToast from "../components/AuctionCreatedToast";
 import { getDetailedViewData } from "../actions/auctionActions";
-import AuctionFinishedToast from "../conponents/AuctionFinishedToast";
+import AuctionFinishedToast from "../components/AuctionFinishedToast";
 
 type Props = {
   children: ReactNode;
@@ -47,13 +47,13 @@ export default function SignalRProvider({ children, user, notifyUrl }: Props) {
 
   const handleAuctionCreated = useCallback(
     (auction: Auction) => {
-      if (user?.username !== auction.seller) {
+      if (user?.name !== auction.seller) {
         return toast(<AuctionCreatedToast auction={auction} />, {
           duration: 10000,
         });
       }
     },
-    [user?.username]
+    [user?.name]
   );
 
   const handleBidPlaced = useCallback(

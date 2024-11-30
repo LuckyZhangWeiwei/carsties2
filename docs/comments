@@ -62,8 +62,12 @@ docker push zhangweiwei1982/gateway-svc:latest
 
 docker build -t zhangweiwei1982/web-app:latest -f frontend/web-app/dockerfile .
 docker push zhangweiwei1982/web-app:latest
-
-
+----------------------------------------------------------------
+docker network ls
+----------------------------------------------------------------
+mkcert -key-file carsties.com.key -cert-file carsties.com.crt app.carsties.com api.carsties.com id.carsties.com
+----------------------------------------------------------------
+C:\Windows\System32\drivers\etc
 ----------------------------------------------------------------
 net stop winnat
 net start winnat

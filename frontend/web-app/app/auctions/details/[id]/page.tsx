@@ -1,7 +1,7 @@
 import {
   getDetailedViewData,
 } from "@/app/actions/auctionActions";
-import Heading from "@/app/conponents/Heading";
+import Heading from "@/app/components/Heading";
 import React from "react";
 import CountdownTimer from "../../CountdownTimer";
 import CarImage from "../../CarImage";
@@ -15,13 +15,15 @@ export default async function Details({ params }: { params: Promise<{ id: string
   const { id } = await params;
   const data = await getDetailedViewData(id);
   const user = await getCurrentUser();
+  // console.log("username:", user?.username);
+  // console.log("name:", user?.name);
 
   return (
     <div>
       <div className="flex justify-between">
         <div className="flex items-center gap-3">
           <Heading title={`${data.make} ${data.model}`} />
-          {user?.username === data.seller && (
+          {user?.name === data.seller && (
             <>
               <EditButton id={data.id} />
               <DeleteButton id={data.id} />

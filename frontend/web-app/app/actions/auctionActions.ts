@@ -16,7 +16,7 @@ export async function updateAuctionTest() {
   };
 
   return await fetchWrapper.put(
-    "auctions/4936249e-21c2-431a-bc3b-2782784c8c55",
+    "auctions/c2f1d2d9-8e07-472a-8acd-5cf31c48fd2d",
     data
   );
 }

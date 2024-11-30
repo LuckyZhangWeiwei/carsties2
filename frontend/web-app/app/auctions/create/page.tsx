@@ -1,4 +1,4 @@
-import Heading from "@/app/conponents/Heading";
+import Heading from "@/app/components/Heading";
 import React from "react";
 import AuctionForm from "../AuctionForm";
 
