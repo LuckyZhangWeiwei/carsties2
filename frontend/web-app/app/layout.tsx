@@ -18,7 +18,7 @@ export default async function RootLayout({
   const user = await getCurrentUser();
   const notifyUrl =
     process.env.NODE_ENV === "production"
-      ? "https://api.carsties.com/notifications"
+      ? "https://api.carsties.local/notifications"
       : process.env.NEXT_PUBLIC_NOTIFY_URL;
 
   return (

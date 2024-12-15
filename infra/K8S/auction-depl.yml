@@ -14,25 +14,15 @@ spec:
       containers:
       - name: auction-svc
         image: zhangweiwei1982/auction-svc:latest
-        env:
-          - name: RabbitMQ__Host
-            value: rabbit-clusterip
-          - name: RabbitMQ__Username
-            value: rabbit
-          - name: RabbitMQ__Password
-            value: rabbit
-          - name: ConnectionStrings__DefaultConnection
-            value: Server=postgres-clusterip:5432;User Id=postgres;Password=postgrespw;Database=auctions
-          - name: IdentityServiceUrl
-            value: http://identity-svc
-          - name: Kestrel__Endpoints__Grpc__Protocols
-            value: Http2
-          - name: Kestrel__Endpoints__Grpc__Url
-            value: http://+:7777
-          - name: Kestrel__Endpoints__WebApi__Protocols
-            value: Http1
-          - name: Kestrel__Endpoints__WebApi__Url
-            value: http://+:80
+        imagePullPolicy: Never
+        envFrom:
+          - configMapRef:
+              name: auction-svc-config
+        ports:
+        - containerPort: 80
+          name: web
+        - containerPort: 7777
+          name: grpc
 ---
 apiVersion: v1
 kind: Service

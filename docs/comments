@@ -62,10 +62,13 @@ docker push zhangweiwei1982/gateway-svc:latest
 
 docker build -t zhangweiwei1982/web-app:latest -f frontend/web-app/dockerfile .
 docker push zhangweiwei1982/web-app:latest
+
+docker builder prune 
 ----------------------------------------------------------------
 docker network ls
 ----------------------------------------------------------------
-mkcert -key-file carsties.com.key -cert-file carsties.com.crt app.carsties.com api.carsties.com id.carsties.com
+mkcert -key-file carsties.local.key -cert-file carsties.local.crt app.carsties.local api.carsties.local id.carsties.local
+
 ----------------------------------------------------------------
 C:\Windows\System32\drivers\etc
 ----------------------------------------------------------------
@@ -81,3 +84,10 @@ kubectl get pods
 kubectl get deployments
 kubectl describe pod postgres-7f778d8769-p7xrj
 kubectl get services
+kubectl rollout restart deployment auction-svc
+kubectl get namespace
+kubectl get services -n ingress-nginx
+----------------------------------------------------------------
+mkcert -key-file server.key -cert-file server.crt app.carsties.local api.carsties.local id.carsties.local
+kubectl create secret tls carsties-app-tls --key server.key --cert server.crt
+kubectl get secret

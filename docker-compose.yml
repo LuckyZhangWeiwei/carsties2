@@ -64,10 +64,10 @@ services:
       dockerfile: src/IdentityService/dockerfile
     environment:
       - ASPNETCORE_URLS=http://+:80
-      - IssuerUri=https://id.carsties.com
-      - ClientApp=https://app.carsties.com
+      - IssuerUri=https://id.carsties.local
+      - ClientApp=https://app.carsties.local
       - ConnectionStrings__DefaultConnection=Server=postgres; User Id=postgres; Password=postgrespw; Database=identity
-      - VIRTUAL_HOST=id.carsties.com
+      - VIRTUAL_HOST=id.carsties.local
     depends_on:
       - postgres
 
@@ -79,8 +79,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Docker
       - ASPNETCORE_URLS=http://+:80
-      - ClientApp=https://app.carsties.com
-      - VIRTUAL_HOST=api.carsties.com
+      - ClientApp=https://app.carsties.local
+      - VIRTUAL_HOST=api.carsties.local
 
   bid-svc:
     image: zhangweiwei1982/bid-svc:latest
@@ -116,13 +116,13 @@ services:
       - /var/lib/web/data
     environment:
       - AUTH_SECRET="say_lalisa_love_me_lalisa_love_me_hey"
-      - AUTH_URL=https://app.carsties.com
+      - AUTH_URL=https://app.carsties.local
       - AUTH_URL_INTERNAL=http://web-app:3000
       - API_URL=http://gateway-svc/
-      - ID_URL=https://id.carsties.com
+      - ID_URL=https://id.carsties.local
       - ID_URL_INTERNAL=http://identity-svc
-      - NOTIFY_URL=https://api.carsties.com/notifications
-      - VIRTUAL_HOST=app.carsties.com
+      - NOTIFY_URL=https://api.carsties.local/notifications
+      - VIRTUAL_HOST=app.carsties.local
       - VIRTUAL_PORT=3000
       
   nginx-proxy:

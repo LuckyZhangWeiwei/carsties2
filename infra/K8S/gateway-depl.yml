@@ -15,13 +15,9 @@ spec:
       - name: gateway-svc
         image: zhangweiwei1982/gateway-svc:latest
         imagePullPolicy: Always
-        env:
-          - name: ClientApp
-            value: https://app.carsties.com
-          - name: IdentityServiceUrl
-            value: https://id.carsties.com
-          - name: ASPNETCORE_URLS
-            value: http://*:80
+        envFrom:
+          - configMapRef:
+              name: gateway-svc-config
         ports:
         - containerPort: 80
 ---
